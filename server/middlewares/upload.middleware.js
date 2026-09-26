@@ -1,7 +1,6 @@
 const multer = require("multer");
 const path = require("path");
-const { S3Client, GetObjectCommand } = require("@aws-sdk/client-s3");
-const { getSignedUrl } = require("@aws-sdk/s3-request-presigner");
+const { S3Client } = require("@aws-sdk/client-s3");
 const multerS3 = require("multer-s3");
 
 const s3 = new S3Client({
@@ -12,7 +11,6 @@ const s3 = new S3Client({
   },
 });
 
-
 const fileFilter = (req, file, cb) => {
   const allowedExts = /\.(jpg|jpeg|png|gif|webp)$/i;
   const allowedMimeTypes = [
@@ -20,7 +18,7 @@ const fileFilter = (req, file, cb) => {
     "image/jpg",
     "image/png",
     "image/gif",
-    "image/webp"
+    "image/webp",
   ];
 
   const isValidExt = allowedExts.test(path.extname(file.originalname));
@@ -29,7 +27,10 @@ const fileFilter = (req, file, cb) => {
   if (isValidExt && isValidMime) {
     cb(null, true);
   } else {
-    cb(new Error("Only .jpg, .jpeg, .png, .gif, and .webp images are allowed"), false);
+    cb(
+      new Error("Only .jpg, .jpeg, .png, .gif, and .webp images are allowed"),
+      false,
+    );
   }
 };
 
@@ -50,14 +51,8 @@ const upload = multer({
   },
 });
 
+const getPublicS3Url = (key) => {
+  return `https://${process.env.AWS_S3_BUCKET_NAME}.s3.${process.env.AWS_REGION}.amazonaws.com/${key}`;
+};
 
-const generateSignedS3Url = async (key) => {
-    const command = new GetObjectCommand({
-        Bucket: process.env.AWS_S3_BUCKET_NAME,
-        Key: key
-    })
-
-    return getSignedUrl(s3, command, { expiresIn: 60 * 60 });
-}
-
-module.exports = { upload, generateSignedS3Url };
+module.exports = { upload, getPublicS3Url };

@@ -44,5 +44,5 @@ app.use("/api/auth", authRoutes);
 app.use("/api/sessions", sessionRoutes);
 app.use("/api/questions", questionsRoutes);
 
-app.get("/api/ai/generated-questions", protect, generateInterviewQuestions);
-app.get("/api/ai/generate-explanation", protect, generateConceptExplanation);
+app.post("/api/ai/generated-questions", protect, generateInterviewQuestions);
+app.post("/api/ai/generate-explanation", protect, generateConceptExplanation);

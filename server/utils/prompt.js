@@ -32,7 +32,7 @@ const conceptExplainPrompt = (question) => `
     - Return the result as a valid JSON object in the following format:
     {
       "title": "Short title here?"
-      "explantion": "Explanation here."
+      "explanation": "Explanation here."
     }
     Important: Do NOT add any extra text outside the JSON format. Only return valid JSON.
    `;

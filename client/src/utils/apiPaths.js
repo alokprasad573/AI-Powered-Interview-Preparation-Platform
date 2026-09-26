@@ -12,15 +12,15 @@ export const API_PATHS = {
     },
 
     AI: {
-        GENEARTE_QUESTIONS: "/api/ai/generate-questions", //Generate Interview questions and answers using Gemeini
+        GENERATE_QUESTIONS: "/api/ai/generated-questions", //Generate Interview questions and answers using Gemeini
         GENERATE_EXPLANATION: "/api/ai/generate-explanation" //Generate concet expalanation using Gemini
     },
 
     SESSION: {
-        CREATE: "/api/session/create", // Create a new interview session with questions
+        CREATE: "/api/sessions/create", // Create a new interview session with questions
         GET_ALL: "/api/sessions/my-sessions",  // Get all user sessions
         GET_ONE_BY_ID: (id) => `/api/sessions/my-sessions/${id}`, // Get sessions details with questions 
-        DELETE: (id) => `api/sessions/my-sessions/${id}` // Delete a session
+        DELETE: (id) => `api/sessions/my-sessions/${id}/delete` // Delete a session
     },
 
     QUESTIONS: {
@@ -28,4 +28,4 @@ export const API_PATHS = {
         PIN: (id) => `/api/questions/${id}/pin`, // Pin or unpin a question
         UPDATE_NOTE: (id) => `/api/questions/${id}/note` // Update/Add a note to a question
     },
-};
+}; 

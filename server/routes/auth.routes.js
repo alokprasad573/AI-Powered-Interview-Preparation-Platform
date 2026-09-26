@@ -5,10 +5,7 @@ const {
   getUserProfile,
 } = require("../controllers/auth.controller");
 const { protect } = require("../middlewares/auth.middleware");
-const {
-  upload,
-  generateSignedS3Url,
-} = require("../middlewares/upload.middleware");
+const { upload, getPublicS3Url } = require("../middlewares/upload.middleware");
 
 const router = express.Router();
 
@@ -24,11 +21,11 @@ router.post("/upload-image", upload.single("image"), async (req, res) => {
     }
 
     const key = req.file.key;
-    const signedUrl = await generateSignedS3Url(key);
+    const publicUrl = getPublicS3Url(key);
 
     return res.status(200).json({
       message: "Image uploaded successfully",
-      imageUrl: signedUrl,
+      imageUrl: publicUrl,
     });
     
   } catch (error) {
