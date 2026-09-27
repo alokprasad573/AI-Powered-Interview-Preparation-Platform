@@ -22,7 +22,7 @@ const LandingPage = () => {
     if (!user) {
       setOpenAuthModal(true);
     } else {
-      navigate("/dashboard");
+      navigate("/workspace");
     }
   };
 
@@ -120,7 +120,7 @@ const LandingPage = () => {
             <div className="relative rounded-2xl p-2 sm:p-3 shadow-[0_25px_60px_-20px_rgba(15,23,42,0.25)] transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_30px_70px_-20px_rgba(15,23,42,0.3)]">
               <img
                 src={HERO_IMAGE}
-                alt="PrepInt Dashboard Preview"
+                alt="PrepInt WorkSpace Preview"
                 className="block w-full h-auto rounded-xl object-contain"
               />
             </div>

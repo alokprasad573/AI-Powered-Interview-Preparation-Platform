@@ -10,7 +10,7 @@ import {
 } from "react-icons/lu";
 import { CARD_BG } from "../../utils/data";
 import { toast } from "react-hot-toast";
-import DashboardLayout from "../../components/layouts/DashboardLayout";
+import WorkSpaceLayout from "../../components/layouts/WorkSpaceLayout";
 import { useNavigate } from "react-router-dom";
 import axiosInstance from "../../utils/axiosInstance";
 import { API_PATHS } from "../../utils/apiPaths";
@@ -19,7 +19,7 @@ import Modal from "../../components/Modal";
 import CreateSessionForms from "./CreateSessionForms";
 import DeleteAlertContent from "../../components/DeleteAlertContent";
 
-const Dashboard = () => {
+const WorkSpace = () => {
   const navigate = useNavigate();
 
   const [sessions, setSessions] = useState([]);
@@ -87,7 +87,7 @@ const Dashboard = () => {
   }, [sessions]);
 
   return (
-    <DashboardLayout>
+    <WorkSpaceLayout>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-12">
         {/* Header Title & Top Action */}
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
@@ -251,8 +251,8 @@ const Dashboard = () => {
           />
         </div>
       </Modal>
-    </DashboardLayout>
+    </WorkSpaceLayout>
   );
 };
 
-export default Dashboard;
+export default WorkSpace;

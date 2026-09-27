@@ -63,7 +63,7 @@ const AiResponsePreview = ({ content }) => {
 
   return (
     <>
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-4xl">
         <div className="text-[14px] prose prose-slate dark:prose-invert max-w-none">
           <ReactMarkdown
             remarkPlugins={[remarkGfm]}

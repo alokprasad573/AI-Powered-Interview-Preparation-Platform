@@ -44,7 +44,7 @@ const Login = ({ setCurrentPage }) => {
       if (token) {
         setCookie("token", token, 7);
         updateUser(response.data);
-        navigate("/dashboard");
+        navigate("/workspace");
       }
     } catch (err) {
       if (err.response && err.response.data.message) {

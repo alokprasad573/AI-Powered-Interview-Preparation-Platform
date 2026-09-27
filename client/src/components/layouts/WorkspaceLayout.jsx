@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { UserContext } from "../../context/userContext";
 import Navbar from "./Navbar";
 
-const DashboardLayout = ({ children }) => {
+const WorkSpaceLayout = ({ children }) => {
   const { user } = useContext(UserContext);
   return (
     <div className="min-h-screen bg-[#fafaf9] flex flex-col selection:bg-amber-500 selection:text-white">
@@ -13,4 +13,4 @@ const DashboardLayout = ({ children }) => {
   );
 };
 
-export default DashboardLayout;
+export default WorkSpaceLayout;

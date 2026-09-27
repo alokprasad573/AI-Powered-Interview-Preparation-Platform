@@ -4,7 +4,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { LuCircleAlert, LuListCollapse } from "react-icons/lu";
 import { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
-import DashboardLayout from "../../components/layouts/DashboardLayout";
+import WorkSpaceLayout from "../../components/layouts/WorkSpaceLayout";
 import RoleInfoHeader from "./components/RoleInfoHeader";
 import QuestionCard from "./components/QuestionCard";
 import Drawer from "../../components/Drawer";
@@ -171,7 +171,7 @@ const InterviewPrep = () => {
   }, [sessionId]);
 
   return (
-    <DashboardLayout>
+    <WorkSpaceLayout>
       <RoleInfoHeader
         role={sessionData?.role || ""}
         topicsToFocus={sessionData?.topicsToFocus || ""}
@@ -185,7 +185,7 @@ const InterviewPrep = () => {
         }
       />
 
-      <div className="container mx-auto px-4 py-6">
+      <div className="container mx-auto px-10 md:px-20 py-6">
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-xl font-semibold">Interview Q&A</h2>
         </div>
@@ -197,7 +197,7 @@ const InterviewPrep = () => {
           <div className="flex gap-4 items-start">
             {/* Questions List — shrinks to 50% when drawer is open */}
             <div
-              className={`transition-all duration-300 ${openLearnMoreDrawer ? "w-1/2" : "w-full"}`}
+              className={`transition-all duration-300 ${openLearnMoreDrawer ? "w-3/5" : "max-w-4xl"}`}
             >
               <AnimatePresence mode="popLayout">
                 {sessionData?.questions?.map((data, index) => (
@@ -278,7 +278,7 @@ const InterviewPrep = () => {
           )}
         </Drawer>
       </div>
-    </DashboardLayout>
+    </WorkSpaceLayout>
   );
 };
 

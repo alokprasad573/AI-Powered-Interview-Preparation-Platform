@@ -22,7 +22,7 @@ export const APP_FEATURES = [
     {
         id: "05",
         title: "Save, Organize and Revisit",
-        description: "Easily save your interview sets, organize them neatly in your dashboard, and revisit them whenever you need. Keep your preparation structured in one place and pick up exactly where you left off as you continue improving your interview skills."
+        description: "Easily save your interview sets, organize them neatly in your workspace, and revisit them whenever you need. Keep your preparation structured in one place and pick up exactly where you left off as you continue improving your interview skills."
     }
 ]
 

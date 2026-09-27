@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 
 import LandingPage from "./pages/LandingPage";
-import Dashboard from "./pages/Home/Dashboard";
+import WorkSpace from "./pages/Home/WorkSpace";
 import InterviewPrep from "./pages/InterviewPrep/InterviewPrep";
 import UserProvider from "./context/userContext";
 
@@ -14,7 +14,7 @@ const App = () => {
           <Routes>
             <Route path="/" element={<LandingPage />} />
 
-            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/workspace" element={<WorkSpace />} />
             <Route
               path="/interview-prep/:sessionId"
               element={<InterviewPrep />}
