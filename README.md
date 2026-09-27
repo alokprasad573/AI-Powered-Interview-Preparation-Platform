@@ -13,6 +13,8 @@
 [![MongoDB](https://img.shields.io/badge/MongoDB-Atlas-47A248?style=for-the-badge&logo=mongodb&logoColor=white)](https://www.mongodb.com/)
 [![Google Gemini](https://img.shields.io/badge/Google_Gemini-AI_1.5-8E75C2?style=for-the-badge&logo=google&logoColor=white)](https://deepmind.google/technologies/gemini/)
 [![AWS S3](https://img.shields.io/badge/AWS_S3-Storage-FF9900?style=for-the-badge&logo=amazon-s3&logoColor=white)](https://aws.amazon.com/s3/)
+[![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-CI-2088FF?style=for-the-badge&logo=github-actions&logoColor=white)](https://github.com/features/actions)
+[![Vercel](https://img.shields.io/badge/Vercel-Deployment-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://vercel.com/)
 
 ---
 
@@ -184,6 +186,10 @@ PrepInt/
     └── utils/                  # Gemini AI prompts and helper utilities
 ```
 
+---
+
+## 💼 Resume & Engineering Highlights
+
 > **Core Competencies Demonstrated:** Full-Stack Architecture • Generative AI Orchestration • Cloud Infrastructure • Performance & State Optimization
 
 ### 🧠 Generative AI System Design
@@ -199,6 +205,16 @@ PrepInt/
 - **Stateless Authentication:** Enforced JWT authentication with HTTP bearer tokens, bcrypt salt-hashing for passwords, and protected route middlewares across all private API surfaces.
 - **Scalable Media Pipelines:** Integrated **AWS S3** via Multer memory buffering, offloading static file storage and enabling high-availability asset delivery.
 - **Defensive API Architecture:** Standardized RESTful endpoints with centralized error handling, CORS security policies, and guarded database cascades on session deletion.
+
+---
+
+## 🔄 CI/CD
+
+GitHub Actions is used for continuous integration, and Vercel handles deployment.
+
+- **Frontend CI Pipeline (`.github/workflows/frontend-ci.yml`):** Triggers on pushes and PRs touching `client/**` to run dependency installation, ESLint checks, and production build verification (`npm run build`) on Node 20.
+- **Backend CI Pipeline (`.github/workflows/backend-ci.yml`):** Triggers on pushes and PRs touching `server/**` to validate dependencies and verify server syntax integrity (`node --check index.js`).
+- **Continuous Deployment:** Seamlessly integrated with **Vercel** for instant pull request preview deployments and zero-downtime production rollouts.
 
 ---
 
