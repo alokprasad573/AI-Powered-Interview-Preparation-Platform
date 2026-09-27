@@ -23,10 +23,16 @@ const App = () => {
         </Router>
 
         <Toaster
+          position="top-right"
           toastOptions={{
-            className: "",
             style: {
+              background: "#0f172a",
+              color: "#f8fafc",
               fontSize: "13px",
+              borderRadius: "12px",
+              border: "1px solid rgba(255, 255, 255, 0.1)",
+              boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.25)",
+              padding: "10px 16px",
             },
           }}
         />

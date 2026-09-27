@@ -1,30 +1,38 @@
-@import url("https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap");
 @import "tailwindcss";
 
 @theme {
-  --font-display: "Urbanist", sans-serif;
+  --font-display: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
   --breakpoint-3xl: 1920px;
-  --color-primary: #ff9324;
+  --color-primary: #6366f1;
 }
 
 @layer base {
   html {
     font-family: var(--font-display);
+    -webkit-font-smoothing: antialiased;
   }
 
   body {
-    background-color: #fcfbfc;
+    background-color: #f8fafc;
+    color: #0f172a;
     overflow-x: hidden;
   }
 }
 
 .custom-scrollbar::-webkit-scrollbar {
-  width: 4px;
+  width: 5px;
+  height: 5px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
-  background-color: rgba(100, 100, 100, 0.4);
-  border-radius: 10px;
+  background-color: rgba(148, 163, 184, 0.4);
+  border-radius: 9999px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(148, 163, 184, 0.7);
 }
 
 .custom-scrollbar::-webkit-scrollbar-track {
@@ -36,7 +44,6 @@
     0% {
       background-position: 0% 50%;
     }
-
     100% {
       background-position: 100% 50%;
     }
@@ -47,66 +54,62 @@
   }
 
   @keyframes blob1 {
-    0%,
-    100% {
+    0%, 100% {
       transform: translate(0px, 0px) scale(1);
     }
     33% {
-      transform: translate(30px, -60px) scale(1.1);
+      transform: translate(30px, -40px) scale(1.08);
     }
     66% {
-      transform: translate(-20px, 20px) scale(0.9);
+      transform: translate(-20px, 20px) scale(0.92);
     } 
   }
 
   @keyframes blob2 {
-    0%,
-    100% {
+    0%, 100% {
       transform: translate(0px, 0px) scale(1);
     }
     33% {
-      transform: translate(-40px, 60px) scale(1.05);
+      transform: translate(-30px, 40px) scale(1.05);
     }
     66% {
-      transform: translate(20px, -40px) scale(0.95);
+      transform: translate(20px, -30px) scale(0.95);
     } 
   }
 
   @keyframes blob3 {
-    0%,
-    100% {
+    0%, 100% {
       transform: translate(0px, 0px) scale(1);
     }
     33% {
-      transform: translate(20px, 140px) scale(1.15);
+      transform: translate(20px, 50px) scale(1.1);
     }
     66% {
-      transform: translate(-30px, -30px) scale(0.85);
+      transform: translate(-30px, -20px) scale(0.9);
     } 
   }
 
   .animate-blob1 {
-    animation: blob1 8s ease-in-out infinite;
+    animation: blob1 10s ease-in-out infinite;
   }
 
   .animate-blob2 {
-    animation: blob2 10s ease-in-out infinite;
+    animation: blob2 12s ease-in-out infinite;
   }
 
   .animate-blob3 {
-    animation:  blob3 12s ease-in-out infinite;
+    animation: blob3 14s ease-in-out infinite;
   }
 }
 
-
 .input-box {
-    @apply w-full flex justify-between gap-3 text-sm text-black bg-gray-50/50 rounded px-4 py-4 mb-4 mt-3 border border-gray-100 outline-none focus-within:border-orange-300;
+  @apply w-full flex justify-between items-center gap-3 text-sm text-slate-800 bg-white rounded-xl px-4 py-3 mb-3 border border-slate-200 outline-none transition-all duration-200 focus-within:border-indigo-500 focus-within:ring-2 focus-within:ring-indigo-100;
 }
 
 .btn-primary {
-    @apply w-full flex items-center justify-center gap-3 text-sm font-medium text-white bg-black shadow-lg shadow-orange-600/5 p-2.5 rounded-md my-1 hover:bg-orange-600/15 hover:text-black cursor-pointer;
+  @apply w-full flex items-center justify-center gap-2.5 text-sm font-semibold text-white bg-slate-900 shadow-sm p-3 rounded-xl hover:bg-indigo-600 transition-all duration-200 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed;
 }
 
 .btn-small {
-    @apply flex items-center justify-center gap-3 bg-linear-to-r from-[#FF9324] to-[#e99a4b] text-sm font-semibold text-white px-7 py-2 rounded-lg hover:bg-black hover:text-white transition-colors cursor-pointer hover:shadow-2xl hover:shadow-orange-300;
+  @apply flex items-center justify-center gap-2 bg-indigo-600 text-sm font-medium text-white px-5 py-2.5 rounded-xl hover:bg-indigo-700 active:scale-[0.98] transition-all duration-150 cursor-pointer shadow-sm hover:shadow-indigo-500/25;
 }
