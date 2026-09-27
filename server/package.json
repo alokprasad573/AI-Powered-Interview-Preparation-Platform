@@ -2,13 +2,13 @@
   "name": "server",
   "version": "1.0.0",
   "description": "",
-  "homepage": "https://github.com/alokprasad573/PrepInt#readme",
+  "homepage": "https://github.com/alokprasad573/AI-Powered-Interview-Preparation-Web-Application#readme",
   "bugs": {
-    "url": "https://github.com/alokprasad573/PrepInt/issues"
+    "url": "https://github.com/alokprasad573/AI-Powered-Interview-Preparation-Web-Application"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/alokprasad573/PrepInt.git"
+    "url": "git+https://github.com/alokprasad573/AI-Powered-Interview-Preparation-Web-Application"
   },
   "license": "ISC",
   "author": "Alok Prasad",
@@ -17,7 +17,7 @@
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"No tests configured yet\" && exit 1"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.1139.0",
