@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { LuUser, LuCamera, LuTrash2 } from "react-icons/lu";
+import { LuUser, LuUpload, LuTrash } from "react-icons/lu";
 
 const ProfilePhotoSelector = ({ image, setImage, preview, setPreview }) => {
   const inputRef = useRef(null);
@@ -9,78 +9,67 @@ const ProfilePhotoSelector = ({ image, setImage, preview, setPreview }) => {
     const file = event.target.files[0];
 
     if (file) {
+      //update image state
       setImage(file);
-      const newPreview = URL.createObjectURL(file);
+
+      //Generate preview URL from the file
+      const preview = URL.createObjectURL(file);
       if (setPreview) {
-        setPreview(newPreview);
+        setPreview(preview);
       }
-      setPreviewUrl(newPreview);
+
+      setPreviewUrl(preview);
     }
   };
 
-  const handleRemoveImage = (e) => {
-    e.stopPropagation();
+  const handleRemoveImage = () => {
     setImage(null);
     setPreviewUrl(null);
+
     if (setPreview) {
       setPreview(null);
-    }
-    if (inputRef.current) {
-      inputRef.current.value = "";
     }
   };
 
   const onChooseFile = () => {
-    inputRef.current?.click();
+    inputRef.current.click();
   };
 
-  const displayImage = preview || previewUrl;
-
   return (
-    <div className="flex flex-col items-center justify-center mb-5">
-      <input
-        type="file"
-        accept="image/*"
-        ref={inputRef}
-        onChange={handleImageChange}
-        className="hidden"
-      />
+    <>
+      <div className="flex justify-center mb-6">
+        <input
+          type="file"
+          accept="image/*"
+          ref={inputRef}
+          onChange={handleImageChange}
+          className="hidden"
+        />
 
-      <div
-        className="relative group cursor-pointer"
-        onClick={onChooseFile}
-        title="Click to upload profile photo"
-      >
-        {displayImage ? (
-          <div className="relative">
-            <img
-              src={displayImage}
-              alt="Profile preview"
-              className="w-20 h-20 rounded-full object-cover ring-2 ring-indigo-500/30 border-2 border-white shadow-md"
-            />
-            <button
-              type="button"
-              className="w-7 h-7 rounded-full bg-rose-600 hover:bg-rose-700 text-white flex items-center justify-center absolute -bottom-1 -right-1 shadow-sm transition-colors cursor-pointer"
-              onClick={handleRemoveImage}
-              title="Remove photo"
-            >
-              <LuTrash2 className="text-xs" />
+        {!image ? (
+          <div className="w-20 h-20 flex items-center justify-center bg-orange-50 rounded-full relative cursor-pointer">
+            <LuUser className="text-4xl text-orange-500" />
+
+            <button 
+            type="button" 
+            className="w-8 h-8 flex items-center justify-center bg-linear-to-r from-orange-500/85 to-orange-600 text-white rounded-full absolute -bottom-l -right-1 cursor-pointer" 
+            onClick={onChooseFile}>
+              <LuUpload />
             </button>
           </div>
         ) : (
-          <div className="w-20 h-20 rounded-full bg-slate-100 border-2 border-dashed border-slate-300 group-hover:border-indigo-500 group-hover:bg-indigo-50/40 flex items-center justify-center transition-all shadow-2xs">
-            <LuUser className="text-3xl text-slate-400 group-hover:text-indigo-600 transition-colors" />
-            <div className="w-7 h-7 rounded-full bg-indigo-600 text-white flex items-center justify-center absolute -bottom-1 -right-1 shadow-xs group-hover:scale-105 transition-transform">
-              <LuCamera className="text-xs" />
-            </div>
+          <div className="relative">
+            <img src={preview || previewUrl} alt="profile photo" className="w-20 h-20 rounded-full object-cover" />
+            <button 
+            type="button" 
+            className="w-8 h-8 flex items-center justify-center bg-red-500 text-white rounded-full absolute -bottom-1 -right-1 cursor-pointer" 
+            onClick={handleRemoveImage}>
+              <LuTrash />
+            </button>
           </div>
         )}
       </div>
-
-      <span className="text-[11px] text-slate-500 mt-2 font-medium">
-        {displayImage ? "Click to change photo" : "Upload avatar (optional)"}
-      </span>
-    </div>
+    </>
   );
 };
 

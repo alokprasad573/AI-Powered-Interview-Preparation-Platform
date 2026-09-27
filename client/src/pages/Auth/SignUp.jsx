@@ -1,6 +1,6 @@
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { LuCircleAlert, LuArrowRight } from "react-icons/lu";
+import { LuCircleAlert } from "react-icons/lu";
 
 import Input from "../../components/inputs/Input";
 import ProfilePhotoSelector from "../../components/inputs/ProfilePhotoSelector";
@@ -28,7 +28,7 @@ const SignUp = ({ setCurrentPage }) => {
     let profileImageUrl = "";
 
     if (!fullName.trim()) {
-      setError("Please enter your full name.");
+      setError("Please enter full name.");
       return;
     }
 
@@ -38,7 +38,7 @@ const SignUp = ({ setCurrentPage }) => {
     }
 
     if (!password || password.length < 6) {
-      setError("Password must be at least 6 characters long.");
+      setError("Password must be at least 6 characters.");
       return;
     }
 
@@ -68,7 +68,7 @@ const SignUp = ({ setCurrentPage }) => {
       if (err.response && err.response.data.message) {
         setError(err.response.data.message);
       } else {
-        setError("Registration failed. Please check your details and try again.");
+        setError("Something went wrong. Please try again.");
       }
     } finally {
       setIsLoading(false);
@@ -77,27 +77,16 @@ const SignUp = ({ setCurrentPage }) => {
 
   return (
     <div className="w-full flex flex-col justify-center">
-      {/* Header */}
-      <div className="flex flex-col items-center text-center mb-5">
-        <div className="w-10 h-10 rounded-xl bg-slate-900 flex items-center justify-center p-2 mb-3 shadow-xs">
-          <img
-            src="/prepInt.svg"
-            alt="PrepInt"
-            className="w-full h-full filter invert brightness-0"
-          />
-        </div>
-        <h3 className="text-xl font-bold tracking-tight text-slate-900">
-          Create an Account
-        </h3>
-        <p className="text-xs text-slate-500 mt-1 max-w-xs">
-          Join PrepInt to curate AI-powered interview sets and ace your tech rounds.
-        </p>
-      </div>
+      <h3 className="text-xl font-bold tracking-tight text-slate-900">
+        Create an Account
+      </h3>
+      <p className="text-xs text-slate-500 mt-1 mb-4">
+        Join us today by entering your details below.
+      </p>
 
-      {/* Form */}
-      <form onSubmit={handleSignUp} className="flex flex-col gap-3">
+      <form onSubmit={handleSignUp} className="flex flex-col gap-1">
         {error && (
-          <div className="flex items-center gap-2 p-3 rounded-xl bg-rose-50 border border-rose-200/80 text-rose-700 text-xs font-medium">
+          <div className="flex items-center gap-2 p-3 rounded-xl bg-rose-50 border border-rose-200 text-rose-700 text-xs font-medium mb-2">
             <LuCircleAlert className="shrink-0 text-sm" />
             <span>{error}</span>
           </div>
@@ -105,51 +94,42 @@ const SignUp = ({ setCurrentPage }) => {
 
         <ProfilePhotoSelector image={profilePic} setImage={setProfilePic} />
 
-        <Input
-          value={fullName}
-          onChange={({ target }) => setFullName(target.value)}
-          label="Full Name"
-          placeholder="Alex Johnson"
-          type="text"
-        />
+        <div className="grid grid-cols-1 gap-1">
+          <Input
+            value={fullName}
+            onChange={({ target }) => setFullName(target.value)}
+            label="Full Name"
+            placeholder="John Doe"
+            type="text"
+          />
 
-        <Input
-          value={email}
-          onChange={({ target }) => setEmail(target.value)}
-          label="Email Address"
-          placeholder="alex@example.com"
-          type="email"
-        />
+          <Input
+            value={email}
+            onChange={({ target }) => setEmail(target.value)}
+            label="Email Address"
+            placeholder="john@example.com"
+            type="email"
+          />
 
-        <Input
-          value={password}
-          onChange={({ target }) => setPassword(target.value)}
-          label="Password"
-          placeholder="At least 6 characters"
-          type="password"
-        />
+          <Input
+            value={password}
+            onChange={({ target }) => setPassword(target.value)}
+            label="Password"
+            placeholder="Min 6 Characters"
+            type="password"
+          />
+        </div>
 
-        <button
-          type="submit"
-          className="btn-primary w-full mt-3 flex items-center justify-center gap-2"
-          disabled={isLoading}
-        >
-          {isLoading ? (
-            <SpinnerLoader />
-          ) : (
-            <>
-              <span>Create Free Account</span>
-              <LuArrowRight className="text-sm" />
-            </>
-          )}
+        <button type="submit" className="btn-primary mt-3" disabled={isLoading}>
+          {isLoading && <SpinnerLoader />}
+          <span>{isLoading ? "Creating Account..." : "SIGN UP"}</span>
         </button>
 
-        {/* Switch to Login */}
-        <div className="text-center pt-3 border-t border-slate-100 text-xs text-slate-500">
+        <p className="text-xs text-slate-600 text-center mt-4">
           Already have an account?{" "}
           <button
             type="button"
-            className="font-semibold text-indigo-600 hover:text-indigo-700 hover:underline cursor-pointer"
+            className="font-semibold text-amber-600 hover:text-amber-700 hover:underline cursor-pointer"
             onClick={() => {
               if (setCurrentPage) {
                 setCurrentPage("login");
@@ -158,9 +138,9 @@ const SignUp = ({ setCurrentPage }) => {
               }
             }}
           >
-            Sign In
+            Login
           </button>
-        </div>
+        </p>
       </form>
     </div>
   );
