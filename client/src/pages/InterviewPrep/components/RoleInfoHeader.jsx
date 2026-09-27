@@ -3,11 +3,8 @@ const RoleInfoHeader = ({
   topicsToFocus,
   experience,
   questions,
-  description,
   lastUpdated,
 }) => {
-
-  const totalQuestions = Number(questions) || 0;
   const totalYears = Number(experience) || 0;
 
   return (
@@ -20,7 +17,9 @@ const RoleInfoHeader = ({
                 <div className="flex justify-between items-start">
                   <div>
                     <h2 className="text-2xl font-medium">{role}</h2>
-                    <p className="text-sm text-medium text-gray-900 mt-1">{topicsToFocus}</p>
+                    <p className="text-sm text-medium text-gray-900 mt-1">
+                      {topicsToFocus}
+                    </p>
                   </div>
                 </div>
               </div>

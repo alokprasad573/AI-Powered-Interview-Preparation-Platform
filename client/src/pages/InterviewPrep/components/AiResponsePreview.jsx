@@ -20,11 +20,25 @@ function CodeBlock({ code, language }) {
         <div className="flex items-center justify-between px-4 py-2 bg-gray-100 border-b border-gray-200">
           <div className="flex items-center space-x-2">
             <LuCode size={16} className="text-gray-500" />
-            <span className="text-sx font-semibold text-gray-600 uppercase tracking-wide">{language || "Code"}</span>
+            <span className="text-sx font-semibold text-gray-600 uppercase tracking-wide">
+              {language || "Code"}
+            </span>
           </div>
-          <button onClick={copyCode} className="text-gray-500 hover:text-gray-700 focus:outline-none relative group" aria-label="Copy code">
-            {copied ? <LuCheck size={16} className="text-gray-600" /> : <LuCopy size={16} />}
-            {copied && <span className="absolute -top-8 right-0 bg-black text-white text-xs rounded-md px-2 py-1 opacity-80 group-hover:opacity-100 transition">Copied!</span>}
+          <button
+            onClick={copyCode}
+            className="text-gray-500 hover:text-gray-700 focus:outline-none relative group"
+            aria-label="Copy code"
+          >
+            {copied ? (
+              <LuCheck size={16} className="text-gray-600" />
+            ) : (
+              <LuCopy size={16} />
+            )}
+            {copied && (
+              <span className="absolute -top-8 right-0 bg-black text-white text-xs rounded-md px-2 py-1 opacity-80 group-hover:opacity-100 transition">
+                Copied!
+              </span>
+            )}
           </button>
         </div>
         <SyntaxHighlighter
@@ -54,7 +68,7 @@ const AiResponsePreview = ({ content }) => {
           <ReactMarkdown
             remarkPlugins={[remarkGfm]}
             components={{
-              code({ node, className, children, ...props }) {
+              code({ className, children, ...props }) {
                 const match = /language-(\w+)/.exec(className || " ");
                 const language = match ? match[1] : "";
 

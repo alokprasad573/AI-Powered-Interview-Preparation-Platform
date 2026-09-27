@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/set-state-in-effect */
 import { useEffect, useState } from "react";
 import moment from "moment";
 import { LuPlus } from "react-icons/lu";
