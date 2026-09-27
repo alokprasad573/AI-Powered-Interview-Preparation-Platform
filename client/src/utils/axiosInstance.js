@@ -3,7 +3,7 @@ import { BASE_URL } from "./apiPaths";
 import { getCookie } from "./helper";
 
 const axiosInstance = axios.create({
-  baseURL: BASE_URL,
+  baseURL: import.meta.env.VITE_BACKEND_URL || BASE_URL,
   timeout: 80000,
   withCredentials: true,
   headers: {

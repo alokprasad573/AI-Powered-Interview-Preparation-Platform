@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🚀 PrepInt - AI Powered Interview Preparation Web Application
+# PrepInt - AI Powered Interview Preparation Web Application
 
 **Ace your next technical interview with AI-curated role-specific questions, instant concept breakdowns, and smart session tracking.**
 
@@ -230,7 +230,6 @@ npm install
 
 Create a `.env` file in the `server/` directory:
 ```env
-PORT=5000
 MONGO_URI=your_mongodb_connection_string
 JWT_SECRET=your_jwt_secret_key
 GEMINI_API_KEY=your_gemini_api_key
@@ -242,7 +241,7 @@ AWS_REGION=your_aws_region
 
 Create a `.env` file in the `client/` directory:
 ```env
-VITE_BACKEND_URL=http://localhost:5000
+VITE_BACKEND_URL=http://localhost:8000
 ```
 
 ### 4. Running the Application
