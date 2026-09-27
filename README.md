@@ -1,6 +1,6 @@
 <div align="center">
 
-# AI Powered Interview Preparation Web Application
+# PrepInt - AI Powered Interview Preparation Platform
 
 **Ace your next technical interview with AI-curated role-specific questions, instant concept breakdowns, and smart session tracking.**
 
@@ -13,8 +13,8 @@
 [![MongoDB](https://img.shields.io/badge/MongoDB-Atlas-47A248?style=for-the-badge&logo=mongodb&logoColor=white)](https://www.mongodb.com/)
 [![Google Gemini](https://img.shields.io/badge/Google_Gemini-AI_1.5-8E75C2?style=for-the-badge&logo=google&logoColor=white)](https://deepmind.google/technologies/gemini/)
 [![AWS S3](https://img.shields.io/badge/AWS_S3-Storage-FF9900?style=for-the-badge&logo=amazon-s3&logoColor=white)](https://aws.amazon.com/s3/)
-[![Frontend CI](https://github.com/alokprasad573/AI-Powered-Interview-Preparation-Web-Application/actions/workflows/frontend-ci.yml/badge.svg)](https://github.com/alokprasad573/AI-Powered-Interview-Preparation-Web-Application/actions/workflows/frontend-ci.yml)
-[![Backend CI](https://github.com/alokprasad573/AI-Powered-Interview-Preparation-Web-Application/actions/workflows/backend-ci.yml/badge.svg)](https://github.com/alokprasad573/AI-Powered-Interview-Preparation-Web-Application/actions/workflows/backend-ci.yml)
+[![Frontend CI](https://github.com/alokprasad573/AI-Powered-Interview-Preparation-Platform/actions/workflows/frontend-ci.yml/badge.svg)](https://github.com/alokprasad573/AI-Powered-Interview-Preparation-Platform/actions/workflows/frontend-ci.yml)
+[![Backend CI](https://github.com/alokprasad573/AI-Powered-Interview-Preparation-Platform/actions/workflows/backend-ci.yml/badge.svg)](https://github.com/alokprasad573/AI-Powered-Interview-Preparation-Platform/actions/workflows/backend-ci.yml)
 [![Vercel](https://img.shields.io/badge/Vercel-Deployment-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://vercel.com/)
 
 <br />
@@ -236,8 +236,8 @@ GitHub Actions is used for continuous integration, and Vercel handles deployment
 
 ```bash
 # Clone the repository
-git clone https://github.com/alokprasad573/AI-Powered-Interview-Preparation-Web-Application.git
-cd AI-Powered-Interview-Preparation-Web-Application
+git clone https://github.com/alokprasad573/AI-Powered-Interview-Preparation-Platform.git
+cd AI-Powered-Interview-Preparation-Platform
 
 # Setup Backend
 cd server
