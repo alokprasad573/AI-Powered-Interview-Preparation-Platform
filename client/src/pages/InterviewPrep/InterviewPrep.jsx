@@ -4,7 +4,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { LuCircleAlert, LuListCollapse } from "react-icons/lu";
 import { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
-import WorkSpaceLayout from "../../components/layouts/WorkSpaceLayout";
+import WorkspaceLayout from "../../components/layouts/WorkspaceLayout";
 import RoleInfoHeader from "./components/RoleInfoHeader";
 import QuestionCard from "./components/QuestionCard";
 import Drawer from "../../components/Drawer";
@@ -171,7 +171,7 @@ const InterviewPrep = () => {
   }, [sessionId]);
 
   return (
-    <WorkSpaceLayout>
+    <WorkspaceLayout>
       <RoleInfoHeader
         role={sessionData?.role || ""}
         topicsToFocus={sessionData?.topicsToFocus || ""}
@@ -278,7 +278,7 @@ const InterviewPrep = () => {
           )}
         </Drawer>
       </div>
-    </WorkSpaceLayout>
+    </WorkspaceLayout>
   );
 };
 
