@@ -14,9 +14,23 @@ const questionsRoutes = require("./routes/question.routes");
 const { generateInterviewQuestions, generateConceptExplanation} = require("./controllers/ai.controller")
 
 // Global Middlewares
+const allowedOrigins = [
+  "http://localhost:5173",
+  "http://127.0.0.1:5173",
+  process.env.CLIENT_URL
+].filter(Boolean);
+
+const PORT = process.env.PORT || 8000
+
 app.use(
   cors({
-    origin: ["http://localhost:5173", "http://127.0.0.1:5173"],
+    origin: (origin, callback) => {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true)
+      } else {
+        callback(new Error("Not allowed bt CORS"))
+      }
+    },
     credentials: true,
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization", "Accept"],
@@ -27,9 +41,9 @@ app.use(express.json());
 
 atlasConnect()
   .then(() => {
-    app.listen(process.env.PORT, () => {
+    app.listen(PORT, () => {
       console.log(
-        `🚀 Server running at ${chalk.blue.underline(`http://localhost:${process.env.PORT || 8000}`)}`,
+        `🚀 Server running at ${chalk.blue.underline(`http://localhost:${PORT}`)}`,
       );
     });
   })
