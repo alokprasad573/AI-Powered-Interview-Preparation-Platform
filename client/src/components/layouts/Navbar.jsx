@@ -3,24 +3,26 @@ import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
-    <>
-      <div className="h-16 bg-white border border-b border-gray-200 backdrop-blur-[2px] py-2.5 px-4 md:px-0 sticky top-0 z-30">
-        <div className="container mx-auto flex items-center justify-between gap-5">
-          <Link to="/dashboard" className="flex items-center gap-2.5 group">
+    <header className="h-16 bg-white/85 backdrop-blur-md border-b border-stone-200/80 sticky top-0 z-40 transition-all">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center justify-between gap-4">
+        <Link to="/dashboard" className="flex items-center gap-2.5 group">
+          <div className="w-9 h-9 rounded-xl bg-slate-900 flex items-center justify-center p-2 shadow-xs transition-transform group-hover:scale-105">
             <img
               src="/prepInt.svg"
               alt="PrepInt"
-              className="w-8 h-8 object-contain transition-transform group-hover:scale-105"
+              className="w-full h-full filter invert brightness-0"
             />
+          </div>
+          <div className="flex items-center gap-2">
             <span className="text-xl font-bold tracking-tight text-slate-900">
               Prep<span className="text-amber-500">Int</span>
             </span>
-          </Link>
+          </div>
+        </Link>
 
-          <ProfileInfoCard />
-        </div>
+        <ProfileInfoCard />
       </div>
-    </>
+    </header>
   );
 };
 

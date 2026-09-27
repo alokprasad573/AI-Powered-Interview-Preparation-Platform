@@ -1,7 +1,5 @@
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { LuCircleAlert } from "react-icons/lu";
-
 import Input from "../../components/inputs/Input";
 import ProfilePhotoSelector from "../../components/inputs/ProfilePhotoSelector";
 import { UserContext } from "../../context/userContext";
@@ -18,7 +16,6 @@ const SignUp = ({ setCurrentPage }) => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-
   const { updateUser } = useContext(UserContext);
   const navigate = useNavigate();
 
@@ -27,7 +24,7 @@ const SignUp = ({ setCurrentPage }) => {
 
     let profileImageUrl = "";
 
-    if (!fullName.trim()) {
+    if (!fullName) {
       setError("Please enter full name.");
       return;
     }
@@ -37,15 +34,17 @@ const SignUp = ({ setCurrentPage }) => {
       return;
     }
 
-    if (!password || password.length < 6) {
-      setError("Password must be at least 6 characters.");
+    if (!password) {
+      setError("Please enter the password.");
       return;
     }
 
     setError("");
     setIsLoading(true);
 
+    // SignUp API call
     try {
+      // Upload Image
       if (profilePic) {
         const imgUploadRes = await uploadImage(profilePic);
         profileImageUrl = imgUploadRes.imageUrl || "";
@@ -76,30 +75,20 @@ const SignUp = ({ setCurrentPage }) => {
   };
 
   return (
-    <div className="w-full flex flex-col justify-center">
-      <h3 className="text-xl font-bold tracking-tight text-slate-900">
-        Create an Account
-      </h3>
-      <p className="text-xs text-slate-500 mt-1 mb-4">
+    <div className="w-[90vw] md:w-[33vw] p-7 flex flex-col justify-center">
+      <h3 className="text-lg font-semibold text-black">Create an Account</h3>
+      <p className="text-xs text-slate-700 mt-1.25 mb-6">
         Join us today by entering your details below.
       </p>
 
-      <form onSubmit={handleSignUp} className="flex flex-col gap-1">
-        {error && (
-          <div className="flex items-center gap-2 p-3 rounded-xl bg-rose-50 border border-rose-200 text-rose-700 text-xs font-medium mb-2">
-            <LuCircleAlert className="shrink-0 text-sm" />
-            <span>{error}</span>
-          </div>
-        )}
-
+      <form onSubmit={handleSignUp}>
         <ProfilePhotoSelector image={profilePic} setImage={setProfilePic} />
-
         <div className="grid grid-cols-1 gap-1">
           <Input
             value={fullName}
             onChange={({ target }) => setFullName(target.value)}
             label="Full Name"
-            placeholder="John Doe"
+            placeholder="John"
             type="text"
           />
 
@@ -115,21 +104,22 @@ const SignUp = ({ setCurrentPage }) => {
             value={password}
             onChange={({ target }) => setPassword(target.value)}
             label="Password"
-            placeholder="Min 6 Characters"
+            placeholder="Min 8 Characters"
             type="password"
           />
         </div>
 
-        <button type="submit" className="btn-primary mt-3" disabled={isLoading}>
-          {isLoading && <SpinnerLoader />}
-          <span>{isLoading ? "Creating Account..." : "SIGN UP"}</span>
+        {error && <p className="text-red-500 text-xs pb-2.5">{error}</p>}
+
+        <button type="submit" className="btn-primary" disabled={isLoading}>
+          {isLoading && <SpinnerLoader />}SIGN UP
         </button>
 
-        <p className="text-xs text-slate-600 text-center mt-4">
+        <p className="text-[13px] text-slate-800 mt-3">
           Already have an account?{" "}
           <button
             type="button"
-            className="font-semibold text-amber-600 hover:text-amber-700 hover:underline cursor-pointer"
+            className="font-medium text-amber-600 hover:text-amber-700 underline cursor-pointer"
             onClick={() => {
               if (setCurrentPage) {
                 setCurrentPage("login");

@@ -1,4 +1,10 @@
-import { LuTrash2 } from "react-icons/lu";
+import {
+  LuTrash2,
+  LuClock,
+  LuBookOpen,
+  LuBriefcase,
+  LuArrowRight,
+} from "react-icons/lu";
 import { getInitials } from "../../utils/helper";
 
 const SummaryCards = ({
@@ -17,60 +23,78 @@ const SummaryCards = ({
 
   return (
     <div
-      className="h-full overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm shadow-gray-200/70 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg cursor-pointer group"
+      className="h-full flex flex-col justify-between overflow-hidden rounded-2xl border border-stone-200/85 bg-white shadow-2xs hover:shadow-xl hover:shadow-amber-500/8 hover:border-amber-300 hover:-translate-y-1 transition-all duration-300 cursor-pointer group"
       onClick={onSelect}
     >
-      <div
-        className="relative p-4"
-        style={{
-          background:
-            colors?.bgcolor ||
-            "linear-gradient(135deg, #f3f4f6 0%, #ffffff 100%)",
-        }}
-      >
-        <button
-          className="absolute right-3 top-3 hidden h-8 w-8 items-center justify-center rounded-full bg-white/90 text-[11px] font-semibold text-rose-500 shadow-sm transition-colors hover:bg-white group-hover:flex"
-          onClick={(e) => {
-            e.stopPropagation();
-            onDelete();
+      <div>
+        {/* Top Header Card Background */}
+        <div
+          className="relative p-5 border-b border-stone-100"
+          style={{
+            background:
+              colors?.bgcolor ||
+              "linear-gradient(135deg, #fffbeb 0%, #ffffff 100%)",
           }}
-          aria-label="Delete session"
         >
-          <LuTrash2 />
-        </button>
+          {/* Delete Button */}
+          <button
+            className="absolute right-3.5 top-3.5 h-8 w-8 rounded-lg bg-white/90 text-stone-400 hover:text-rose-600 hover:bg-rose-50 border border-stone-200/60 shadow-2xs transition-colors flex items-center justify-center cursor-pointer"
+            onClick={(e) => {
+              e.stopPropagation();
+              onDelete();
+            }}
+            title="Delete session"
+            aria-label="Delete session"
+          >
+            <LuTrash2 className="text-sm" />
+          </button>
 
-        <div className="flex items-start gap-3">
-          <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-white text-sm font-bold text-slate-900 shadow-sm">
-            {getInitials(role)}
+          <div className="flex items-start gap-3.5 pr-8">
+            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white border border-stone-200/70 text-sm font-bold text-slate-800 shadow-2xs">
+              {getInitials(role)}
+            </div>
+
+            <div className="min-w-0 flex-1">
+              <h2 className="truncate text-base font-bold text-slate-900 group-hover:text-amber-600 transition-colors">
+                {role || "Untitled Role"}
+              </h2>
+              <p className="mt-0.5 truncate text-xs text-slate-500 font-medium">
+                {topicsToFocus || "General Technical Topics"}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Content Body */}
+        <div className="p-5 space-y-3.5">
+          {/* Metadata Badges */}
+          <div className="flex flex-wrap gap-2 text-xs">
+            <span className="inline-flex items-center gap-1.5 rounded-lg border border-stone-200 bg-stone-50 px-2.5 py-1 text-[11px] font-medium text-slate-700">
+              <LuBriefcase className="text-stone-400 text-xs" />
+              {totalYears} {totalYears === 1 ? "Year" : "Years"} exp
+            </span>
+            <span className="inline-flex items-center gap-1.5 rounded-lg border border-amber-200/70 bg-amber-50/70 px-2.5 py-1 text-[11px] font-semibold text-amber-800">
+              <LuBookOpen className="text-amber-600 text-xs" />
+              {totalQuestions} Q&A
+            </span>
+            <span className="inline-flex items-center gap-1.5 rounded-lg border border-stone-200 bg-stone-50 px-2.5 py-1 text-[11px] font-medium text-slate-500">
+              <LuClock className="text-stone-400 text-xs" />
+              {lastUpdated || "Recently"}
+            </span>
           </div>
 
-          <div className="min-w-0 flex-1">
-            <h2 className="truncate text-base font-semibold text-slate-900">
-              {role || "Untitled role"}
-            </h2>
-            <p className="mt-1 truncate text-xs text-slate-700/80">
-              {topicsToFocus || "No focus area provided"}
-            </p>
-          </div>
+          {/* Description */}
+          <p className="text-xs text-slate-600 line-clamp-2 leading-relaxed">
+            {description ||
+              "Personalized AI curated interview preparation session with instant breakdown and tips."}
+          </p>
         </div>
       </div>
 
-      <div className="space-y-3 px-3 pb-4 pt-3">
-        <div className="flex flex-wrap gap-2">
-          <span className="rounded-full border border-slate-300 bg-slate-50 px-2.5 py-1 text-[10px] font-medium text-slate-700">
-            {totalYears} {totalYears === 1 ? "Year" : "Years"} exp
-          </span>
-          <span className="rounded-full border border-slate-300 bg-slate-50 px-2.5 py-1 text-[10px] font-medium text-slate-700">
-            {totalQuestions} Q&A
-          </span>
-          <span className="rounded-full border border-slate-300 bg-slate-50 px-2.5 py-1 text-[10px] font-medium text-slate-700">
-            {lastUpdated || "No date"}
-          </span>
-        </div>
-
-        <p className="text-xs leading-5 text-slate-600 line-clamp-2">
-          {description || "No description available for this session."}
-        </p>
+      {/* Footer Action Strip */}
+      <div className="px-5 py-3.5 bg-stone-50/50 border-t border-stone-100 flex items-center justify-between text-xs font-semibold text-slate-500 group-hover:text-amber-600 transition-colors">
+        <span>Practice Interview</span>
+        <LuArrowRight className="text-sm transition-transform group-hover:translate-x-1" />
       </div>
     </div>
   );

@@ -4,7 +4,7 @@
 
 **Ace your next technical interview with AI-curated role-specific questions, instant concept breakdowns, and smart session tracking.**
 
-[![React](https://img.shields.io/badge/React-18.x-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://reactjs.org/)
+[![React](https://img.shields.io/badge/React-18.x-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://react.dev/)
 [![Vite](https://img.shields.io/badge/Vite-5.x-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
 [![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
 [![Framer Motion](https://img.shields.io/badge/Framer_Motion-black?style=for-the-badge&logo=framer&logoColor=blue)](https://www.framer.com/motion/)
@@ -13,12 +13,17 @@
 [![MongoDB](https://img.shields.io/badge/MongoDB-Atlas-47A248?style=for-the-badge&logo=mongodb&logoColor=white)](https://www.mongodb.com/)
 [![Google Gemini](https://img.shields.io/badge/Google_Gemini-AI_1.5-8E75C2?style=for-the-badge&logo=google&logoColor=white)](https://deepmind.google/technologies/gemini/)
 [![AWS S3](https://img.shields.io/badge/AWS_S3-Storage-FF9900?style=for-the-badge&logo=amazon-s3&logoColor=white)](https://aws.amazon.com/s3/)
-[![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-CI-2088FF?style=for-the-badge&logo=github-actions&logoColor=white)](https://github.com/features/actions)
+[![Frontend CI](https://github.com/alokprasad573/AI-Powered-Interview-Preparation-Web-Application/actions/workflows/frontend-ci.yml/badge.svg)](https://github.com/alokprasad573/AI-Powered-Interview-Preparation-Web-Application/actions/workflows/frontend-ci.yml)
+[![Backend CI](https://github.com/alokprasad573/AI-Powered-Interview-Preparation-Web-Application/actions/workflows/backend-ci.yml/badge.svg)](https://github.com/alokprasad573/AI-Powered-Interview-Preparation-Web-Application/actions/workflows/backend-ci.yml)
 [![Vercel](https://img.shields.io/badge/Vercel-Deployment-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://vercel.com/)
 
----
+<br />
+
+<img src="client/public/HeroImage.png" alt="PrepInt Dashboard Preview" width="100%" style="border-radius: 12px; border: 1px solid #e5e7eb; box-shadow: 0 20px 40px -15px rgba(0,0,0,0.1);" />
 
 </div>
+
+---
 
 ## 📌 Executive Summary
 **PrepInt** is an end-to-end full-stack web platform designed to streamline tech interview preparation. Leveraging **Google Gemini AI**, it delivers dynamic, personalized interview simulations based on target roles, experience levels, and focus topics with automated concept explanations and rich markdown visualization.
@@ -29,9 +34,10 @@
 
 - 🎯 **Targeted AI Question Generation** — Dynamically crafts interview questions customized by job designation, domain, years of experience, and niche focus topics.
 - 💡 **Instant Deep-Dive Concept Explanations** — On-demand AI breakdowns of complex architectural and algorithmic concepts directly inside a responsive side-drawer.
-- 📊 **Intelligent Session Management** — Seamlessly create, organize, review, expand, or delete preparation sessions with synchronized MongoDB persistence.
+- 📊 **Intelligent Session Command Center** — Seamlessly create, organize, review, expand, or delete preparation sessions with live metrics (total tracks, questions mastered).
+- 🔍 **Real-Time Role & Topic Filtering** — Instant keyword search across preparation tracks to quickly locate specific tech stacks or questions.
 - 📌 **Question Pinning & Notes** — Bookmark priority questions and attach personalized preparation notes to track revision progress.
-- ⚡ **Zero-Latency UI with Framer Motion** — Fluid micro-interactions, responsive side-drawers, skeletons, and loading indicators for optimal UX.
+- ⚡ **Zero-Latency UI & Motion** — Fluid micro-interactions, responsive side-drawers, skeletons, and loading indicators powered by Framer Motion.
 - 📋 **Interactive Code Previews & Markdown Rendering** — Syntax-highlighted code blocks, copy-to-clipboard functionality, and structured markdown parsing.
 - 🔐 **JWT-Based Authentication & Cloud Storage** — Secure user sign-up/login sessions with profile photo storage powered by **AWS S3**.
 
@@ -230,8 +236,8 @@ GitHub Actions is used for continuous integration, and Vercel handles deployment
 
 ```bash
 # Clone the repository
-git clone https://github.com/your-username/AI-Powered-Interview-Preparation-Web-Application.git
-cd PrepInt
+git clone https://github.com/alokprasad573/AI-Powered-Interview-Preparation-Web-Application.git
+cd AI-Powered-Interview-Preparation-Web-Application
 
 # Setup Backend
 cd server

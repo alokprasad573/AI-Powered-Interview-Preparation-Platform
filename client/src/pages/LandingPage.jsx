@@ -6,8 +6,8 @@ import { LuSparkles, LuArrowRight } from "react-icons/lu";
 import Login from "./Auth/Login";
 import SignUp from "./Auth/SignUp";
 import Modal from "../components/Modal";
-import HeroImage from "../../public/HeroImage.png";
 
+import { HERO_IMAGE } from "../utils/apiPaths";
 import { UserContext } from "../context/userContext";
 import ProfileInfoCard from "../components/cards/ProfileInfoCard";
 
@@ -29,8 +29,8 @@ const LandingPage = () => {
   return (
     <div className="w-full min-h-screen bg-[#fafaf9] text-slate-900 selection:bg-amber-500 selection:text-white overflow-x-hidden">
       {/* Top Ambient Warm Glow */}
-      <div className="w-full bg-gradient-to-b from-amber-50/80 via-orange-50/30 to-transparent relative pb-28 sm:pb-36 border-b border-amber-100/40">
-        <div className="w-[500px] h-[500px] bg-gradient-to-br from-amber-300/25 to-orange-400/20 rounded-full blur-[110px] pointer-events-none absolute -top-40 left-1/2 -translate-x-1/2 animate-pulse-glow" />
+      <div className="w-full bg-linear-to-b from-amber-50/80 via-orange-50/30 to-transparent relative pb-28 sm:pb-36 border-b border-amber-100/40">
+        <div className="w-125 h-125 bg-linear-to-br from-amber-300/25 to-orange-400/20 rounded-full blur-[110px] pointer-events-none absolute -top-40 left-1/2 -translate-x-1/2 animate-pulse-glow" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 relative z-10">
           {/* Header */}
@@ -57,7 +57,7 @@ const LandingPage = () => {
               <ProfileInfoCard />
             ) : (
               <button
-                className="bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-600 hover:to-orange-700 text-xs sm:text-sm font-semibold text-white px-6 py-2.5 rounded-xl shadow-md shadow-amber-500/20 active:scale-[0.98] transition-all cursor-pointer"
+                className="bg-linear-to-r from-amber-500 to-orange-600 hover:from-amber-600 hover:to-orange-700 text-xs sm:text-sm font-semibold text-white px-6 py-2.5 rounded-xl shadow-md shadow-amber-500/20 active:scale-[0.98] transition-all cursor-pointer"
                 onClick={() => {
                   setCurrentPage("login");
                   setOpenAuthModal(true);
@@ -80,7 +80,7 @@ const LandingPage = () => {
 
               <h1 className="text-4xl sm:text-5xl lg:text-6xl text-slate-900 font-bold mb-6 leading-[1.15] tracking-tight">
                 Ace Interviews with <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 via-orange-500 to-amber-600 animate-text-shine font-extrabold">
+                <span className="text-transparent bg-clip-text bg-linear-to-r from-amber-500 via-orange-500 to-amber-600 animate-text-shine font-extrabold">
                   AI-Powered
                 </span>{" "}
                 Learning
@@ -97,7 +97,7 @@ const LandingPage = () => {
 
               <div className="flex flex-col sm:flex-row items-center gap-4">
                 <button
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 bg-slate-900 hover:bg-gradient-to-r hover:from-amber-500 hover:to-orange-600 text-sm font-semibold text-white px-8 py-3.5 rounded-xl shadow-lg shadow-slate-900/10 active:scale-[0.98] transition-all cursor-pointer"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 bg-slate-900 hover:bg-linear-to-r hover:from-amber-500 hover:to-orange-600 text-sm font-semibold text-white px-8 py-3.5 rounded-xl shadow-lg shadow-slate-900/10 active:scale-[0.98] transition-all cursor-pointer"
                   onClick={handleCTA}
                 >
                   <span>Get Started Free</span>
@@ -109,26 +109,20 @@ const LandingPage = () => {
         </div>
       </div>
 
-      {/* 3D Perspective Tilt Hero Showcase */}
-      <div className="w-full relative z-10 px-4 sm:px-6 lg:px-8 perspective-container">
-        <section className="flex items-center justify-center -mt-16 sm:-mt-24">
-          <div className="relative w-full max-w-5xl group">
-            {/* Ambient Radial Sunset Glow & Elevation Shadow Underneath */}
-            <div className="absolute -inset-2 bg-gradient-to-r from-amber-500/20 via-orange-500/25 to-amber-600/20 rounded-[32px] sm:rounded-[40px] blur-3xl opacity-60 group-hover:opacity-85 transition-opacity duration-700 -z-10" />
-            <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 w-4/5 h-16 bg-gradient-to-r from-amber-500/30 to-orange-500/30 blur-2xl rounded-full -z-10 opacity-70 group-hover:opacity-95 transition-opacity duration-700" />
+      {/* Simple Hero Showcase */}
+      <div className="relative z-10 w-full px-4 sm:px-6 lg:px-8">
+        <section className="flex justify-center -mt-12 sm:-mt-20">
+          <div className="relative w-full max-w-5xl">
+            {/* Soft Background Glow */}
+            <div className="absolute -inset-4 rounded-3xl bg-amber-400/10 blur-2xl" />
 
-            {/* 3D Tilt Card Frame */}
-            <div className="tilt-showcase-card relative rounded-2xl sm:rounded-3xl bg-white/80 p-2 sm:p-3.5 border border-stone-200/90 shadow-[0_30px_70px_-15px_rgba(15,23,42,0.16),0_20px_40px_-15px_rgba(245,158,11,0.2)] backdrop-blur-xl">
-              <div className="relative rounded-xl sm:rounded-2xl overflow-hidden border border-stone-200/80 bg-white shadow-inner">
-                <img
-                  src={HeroImage}
-                  alt="PrepInt Dashboard Preview"
-                  className="w-full h-auto object-cover sm:object-contain block"
-                />
-
-                {/* Subtle Sheen Gradient Light Effect */}
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-white/25 rounded-xl sm:rounded-2xl" />
-              </div>
+            {/* Screenshot Card */}
+            <div className="relative rounded-2xl p-2 sm:p-3 shadow-[0_25px_60px_-20px_rgba(15,23,42,0.25)] transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_30px_70px_-20px_rgba(15,23,42,0.3)]">
+              <img
+                src={HERO_IMAGE}
+                alt="PrepInt Dashboard Preview"
+                className="block w-full h-auto rounded-xl object-contain"
+              />
             </div>
           </div>
         </section>
@@ -214,31 +208,7 @@ const LandingPage = () => {
         }}
         hideHeader
       >
-        <div className="w-full">
-          {/* Top Switcher Tabs */}
-          <div className="flex items-center justify-center p-1 bg-stone-100 rounded-xl mb-5">
-            <button
-              className={`flex-1 py-1.5 text-xs font-semibold rounded-lg transition-all cursor-pointer ${
-                currentPage === "login"
-                  ? "bg-white text-slate-900 shadow-2xs"
-                  : "text-slate-500 hover:text-slate-900"
-              }`}
-              onClick={() => setCurrentPage("login")}
-            >
-              Sign In
-            </button>
-            <button
-              className={`flex-1 py-1.5 text-xs font-semibold rounded-lg transition-all cursor-pointer ${
-                currentPage === "signup"
-                  ? "bg-white text-slate-900 shadow-2xs"
-                  : "text-slate-500 hover:text-slate-900"
-              }`}
-              onClick={() => setCurrentPage("signup")}
-            >
-              Create Account
-            </button>
-          </div>
-
+        <div>
           {currentPage === "login" && <Login setCurrentPage={setCurrentPage} />}
           {currentPage === "signup" && (
             <SignUp setCurrentPage={setCurrentPage} />
