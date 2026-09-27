@@ -52,24 +52,28 @@ const QuestionCard = ({
                 }`}
               >
                 <button
-                  className="flex items-center gap-2 text-xs text-indigo-800 font-medium bg-indigo-50 px-3 py-1 mr-2 rounded text-nowrap border border-indigo-50 hover:border-indigo-200 cursor-pointer"
+                  className={`flex items-center gap-2 text-xs font-medium px-3 py-1 mr-2 rounded text-nowrap border cursor-pointer transition-colors ${
+                    isPinned
+                      ? "text-amber-800 bg-amber-100 border-amber-300"
+                      : "text-zinc-600 bg-zinc-100 border-zinc-200 hover:text-amber-700 hover:bg-amber-50 hover:border-amber-200"
+                  }`}
                   onClick={onTogglePin}
                 >
                   {isPinned ? (
-                    <LuPinOff className="text-xs" />
+                    <LuPinOff className="text-xs text-amber-700" />
                   ) : (
                     <LuPin className="text-xs" />
                   )}
                 </button>
 
                 <button
-                  className="flex items-center gap-2 text-xs text-cyan-800 font-medium bg-cyan-50 px-2 py-1 mr-2 rounded text-nowrap border border-cyan-50 hover:border-cyan-200 cursor-pointer"
+                  className="flex items-center gap-2 text-xs text-amber-800 font-medium bg-amber-50 px-2.5 py-1 mr-2 rounded text-nowrap border border-amber-200 hover:bg-amber-100 hover:border-amber-300 cursor-pointer transition-colors"
                   onClick={() => {
                     setIsExpanded(true);
                     onLearnMore();
                   }}
                 >
-                  <LuSparkles />
+                  <LuSparkles className="text-amber-600" />
                   <span className="hidden md:block">Explain</span>
                 </button>
               </div>

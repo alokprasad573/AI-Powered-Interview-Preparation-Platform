@@ -87,11 +87,11 @@ const Dashboard = () => {
           </div>
 
           <button
-            className="h-12 md:h-12 flex items-center justify-center gap-3 bg-linear-to-r from-[#FF9324] to-[#e99a4b] text-sm font-semibold text-white px-7 py-2.5 rounded-full hover:bg-black hover:text-white transition-colors cursor-pointer hover:shadow-2xl hover:shadow-orange-300 fixed bottom-10 md:bottom-20 right-10 md:right-20"
+            className="h-12 flex items-center justify-center gap-2.5 bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-600 hover:to-orange-700 text-sm font-semibold text-white px-6 py-2.5 rounded-full shadow-lg shadow-amber-500/25 hover:shadow-xl hover:shadow-amber-500/35 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 cursor-pointer fixed bottom-10 md:bottom-16 right-8 md:right-16 z-20"
             onClick={() => setOpenCreateModal(true)}
           >
-            <LuPlus className="text-2xl text-white" />
-            Add New
+            <LuPlus className="text-xl text-white" />
+            <span>Add New</span>
           </button>
         </div>
 

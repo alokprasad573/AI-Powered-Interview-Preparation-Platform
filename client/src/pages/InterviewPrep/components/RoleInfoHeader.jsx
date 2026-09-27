@@ -40,11 +40,11 @@ const RoleInfoHeader = ({
             </div>
           </div>
 
-          <div className="w-[40vw] md:w-[30vw] h-50 flex items-center justify-center bg-white overflow-hidden absolute top-0 right-0">
-            <div className="w-16 h-16 bg-lime-400 blur-[65px] animate-blob1" />
-            <div className="w-16 h-16 bg-teal-400 blur-[65px] animate-blob2" />
-            <div className="w-16 h-16 bg-cyan-300 blur-[45px] animate-blob3" />
-            <div className="w-16 h-16 bg-fuchsia-200 blur-[45px] animate-blob1" />
+          <div className="w-[40vw] md:w-[30vw] h-50 flex items-center justify-center bg-white overflow-hidden absolute top-0 right-0 pointer-events-none opacity-70">
+            <div className="w-20 h-20 bg-amber-400/50 blur-[60px] animate-blob1" />
+            <div className="w-20 h-20 bg-orange-500/40 blur-[60px] animate-blob2" />
+            <div className="w-20 h-20 bg-rose-400/30 blur-[50px] animate-blob3" />
+            <div className="w-16 h-16 bg-amber-300/40 blur-[45px] animate-blob1" />
           </div>
         </div>
       </div>
