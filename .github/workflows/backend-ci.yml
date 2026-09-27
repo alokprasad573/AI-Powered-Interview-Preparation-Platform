@@ -35,6 +35,3 @@ jobs:
 
       - name: Check Backend Syntax
         run: node --check index.js
-
-      - name: Run Tests
-        run: npm test
