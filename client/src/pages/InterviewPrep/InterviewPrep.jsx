@@ -25,6 +25,8 @@ const InterviewPrep = () => {
   const [activeQuestionId, setActiveQuestionId] = useState(null);
 
   const [isUpdateLoader, setIsUpdateLoader] = useState(false);
+
+  // ✅ Separate loading states — session vs explanation
   const [isPageLoading, setIsPageLoading] = useState(false);
   const [isExplainLoading, setIsExplainLoading] = useState(false);
 
@@ -49,6 +51,7 @@ const InterviewPrep = () => {
 
   // Generate Concept Explanation
   const generateConceptExplanation = async (questionId, question) => {
+    // Toggle: clicking same question closes the drawer
     if (activeQuestionId === questionId && openLearnMoreDrawer) {
       setOpenLearnMoreDrawer(false);
       setActiveQuestionId(null);
@@ -60,7 +63,7 @@ const InterviewPrep = () => {
       setErrorMsg("");
       setExplanation(null);
       setActiveQuestionId(questionId);
-      setIsExplainLoading(true);
+      setIsExplainLoading(true); // ✅ only affects drawer — NOT the page
       setOpenLearnMoreDrawer(true);
 
       const response = await axiosInstance.post(
@@ -69,14 +72,14 @@ const InterviewPrep = () => {
       );
 
       if (response.data) {
-        setExplanation(response.data);
+        setExplanation(response.data); // e.g. { title: "...", explanation: "..." }
       }
     } catch (error) {
       setExplanation(null);
       setErrorMsg("Failed to generate explanation. Try again later.");
       console.error("Error:", error);
     } finally {
-      setIsExplainLoading(false);
+      setIsExplainLoading(false); // ✅ marks explanation done, page stays mounted
     }
   };
 
@@ -97,40 +100,38 @@ const InterviewPrep = () => {
   // Add more questions to a session
   const uploadMoreQuestions = async () => {
     try {
-      setIsUpdateLoader(true);
+      setIsUpdateLoader(true)
 
       const aiResponse = await axiosInstance.post(
-        API_PATHS.AI.GENERATE_QUESTIONS,
-        {
+        API_PATHS.AI.GENERATE_QUESTIONS, {
           role: sessionData?.role,
           experience: sessionData?.experience,
           topicsToFocus: sessionData?.topicsToFocus,
-          numberOfQuestions: 10,
-        },
-      );
+          numberOfQuestions: 10
+        }
+      )
 
-      const generatedQuestions = aiResponse.data;
+      const generatedQuestions = aiResponse.data
 
       const response = await axiosInstance.post(
-        API_PATHS.QUESTIONS.ADD_TO_SESSION,
-        {
+        API_PATHS.QUESTIONS.ADD_TO_SESSION, {
           sessionId,
-          questions: generatedQuestions,
-        },
-      );
+          questions: generatedQuestions
+        }
+      )
 
       if (response.data) {
-        toast.success("Added more questions successfully!");
-        fetchSessionDetailsById();
+        toast.success("Added More Q&A!!")
+        fetchSessionDetailsById()
       }
     } catch (error) {
       if (error.response && error.response.data.message) {
-        setErrorMsg(error.response.data.message);
+        setErrorMsg(error.response.data.message)
       } else {
-        setErrorMsg("Something went wrong.");
+        setErrorMsg("Something went wrong.")
       }
     } finally {
-      setIsUpdateLoader(false);
+      setIsUpdateLoader(false)
     }
   };
 
@@ -184,46 +185,33 @@ const InterviewPrep = () => {
         }
       />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="flex items-center justify-between mb-6 pb-3 border-b border-slate-200/80">
-          <div>
-            <h2 className="text-xl font-bold tracking-tight text-slate-900">
-              Technical Interview Questions
-            </h2>
-            <p className="text-xs text-slate-500 mt-0.5">
-              Click any question to view the answer and solution breakdown.
-            </p>
-          </div>
-
-          <span className="text-xs font-semibold text-slate-600 bg-slate-100 border border-slate-200 px-3 py-1 rounded-lg">
-            {sessionData?.questions?.length || 0} Questions Total
-          </span>
+      <div className="container mx-auto px-4 py-6">
+        <div className="flex items-center justify-between mb-4">
+          <h2 className="text-xl font-semibold">Interview Q&A</h2>
         </div>
 
-        {/* Page load skeleton */}
+        {/* ✅ Page load skeleton — only shows on first load, never when explanation loads */}
         {isPageLoading && !sessionData ? (
           <SkeletonLoader count={5} />
         ) : (
-          <div className="flex gap-6 items-start">
-            {/* Questions List — responsive on desktop when drawer is open, full width on mobile */}
+          <div className="flex gap-4 items-start">
+            {/* Questions List — shrinks to 50% when drawer is open */}
             <div
-              className={`transition-all duration-300 w-full ${
-                openLearnMoreDrawer ? "lg:w-[58%]" : "w-full"
-              }`}
+              className={`transition-all duration-300 ${openLearnMoreDrawer ? "w-1/2" : "w-full"}`}
             >
               <AnimatePresence mode="popLayout">
                 {sessionData?.questions?.map((data, index) => (
                   <motion.div
                     key={data._id || index}
-                    initial={{ opacity: 0, y: -15 }}
+                    initial={{ opacity: 0, y: -20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, scale: 0.96 }}
+                    exit={{ opacity: 0, scale: 0.95 }}
                     transition={{
-                      duration: 0.3,
+                      duration: 0.4,
                       type: "spring",
-                      stiffness: 110,
-                      delay: Math.min(index * 0.05, 0.4),
-                      damping: 16,
+                      stiffness: 100,
+                      delay: index * 0.1,
+                      damping: 15,
                     }}
                     layout
                     layoutId={`questions-${data._id || index}`}
@@ -231,7 +219,6 @@ const InterviewPrep = () => {
                   >
                     <>
                       <QuestionCard
-                        index={index}
                         question={data?.question}
                         answer={data?.answer}
                         onLearnMore={() =>
@@ -246,10 +233,10 @@ const InterviewPrep = () => {
                       />
 
                       {!isPageLoading &&
-                        sessionData?.questions?.length === index + 1 && (
-                          <div className="flex items-center justify-center mt-8 pb-10">
+                        sessionData?.questions?.length == index + 1 && (
+                          <div className="flex items-center justify-center mt-5">
                             <button
-                              className="inline-flex items-center gap-2.5 text-sm font-semibold text-white bg-slate-900 hover:bg-indigo-600 px-6 py-3 rounded-xl shadow-xs transition-colors cursor-pointer disabled:opacity-50"
+                              className="flex items-center gap-3 text-sm text-white font-medium bg-black  px-5 py-2 mr-2 rounded text-nowrap cursor-pointer"
                               disabled={isPageLoading || isUpdateLoader}
                               onClick={uploadMoreQuestions}
                             >
@@ -257,12 +244,8 @@ const InterviewPrep = () => {
                                 <SpinnerLoader />
                               ) : (
                                 <LuListCollapse className="text-lg" />
-                              )}
-                              <span>
-                                {isUpdateLoader
-                                  ? "Generating..."
-                                  : "Load More Questions"}
-                              </span>
+                              )}{" "}
+                              Load More...
                             </button>
                           </div>
                         )}
@@ -279,14 +262,17 @@ const InterviewPrep = () => {
           onClose={handleCloseDrawer}
           title={explanation?.title || ""}
         >
+          {/* Error inside drawer */}
           {errorMsg && (
             <p className="flex items-start gap-2 text-sm text-amber-600 font-medium mb-4">
               <LuCircleAlert className="mt-0.5 shrink-0" /> {errorMsg}
             </p>
           )}
 
+          {/* ✅ Skeleton only when explanation is loading */}
           {isExplainLoading && <SkeletonLoader count={2} />}
 
+          {/* ✅ Explanation shows when NOT loading AND data exists */}
           {!isExplainLoading && explanation && (
             <AiResponsePreview content={explanation?.explanation} />
           )}
