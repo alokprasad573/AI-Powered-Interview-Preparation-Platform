@@ -1,6 +1,6 @@
 <div align="center">
 
-# PrepInt - AI Powered Interview Preparation Web Application
+# AI Powered Interview Preparation Web Application
 
 **Ace your next technical interview with AI-curated role-specific questions, instant concept breakdowns, and smart session tracking.**
 
@@ -19,7 +19,7 @@
 
 <br />
 
-<img src="client/public/HeroImage.png" alt="PrepInt Dashboard Preview" width="100%" style="border-radius: 12px; border: 1px solid #e5e7eb; box-shadow: 0 20px 40px -15px rgba(0,0,0,0.1);" />
+<img src="https://prepint-s3-bucket.s3.ap-south-2.amazonaws.com/user_profile_images/1790505372255-wlyttrautli.png" alt="PrepInt Dashboard Preview" width="100%" style="border-radius: 12px; border: 1px solid #e5e7eb; box-shadow: 0 20px 40px -15px rgba(0,0,0,0.1);" />
 
 </div>
 
