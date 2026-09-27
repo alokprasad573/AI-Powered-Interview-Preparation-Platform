@@ -2,7 +2,7 @@ import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { APP_FEATURES } from "../utils/data";
 
-import { LuSparkles, LuArrowRight } from "react-icons/lu";
+import { LuSparkles, LuArrowRight, LuLock, LuShieldCheck } from "react-icons/lu";
 import Login from "./Auth/Login";
 import SignUp from "./Auth/SignUp";
 import Modal from "../components/Modal";
@@ -91,7 +91,8 @@ const LandingPage = () => {
               <p className="text-base sm:text-lg text-slate-600 mb-8 leading-relaxed">
                 Get role-specific questions, expand answers when you need them,
                 dive deeper into concepts, and organize everything your way.
-                From preparation to mastery — your ultimate interview toolkit is here.
+                From preparation to mastery — your ultimate interview toolkit is
+                here.
               </p>
 
               <div className="flex flex-col sm:flex-row items-center gap-4">
@@ -109,14 +110,79 @@ const LandingPage = () => {
       </div>
 
       {/* Hero Image Section */}
-      <div className="w-full relative z-10 px-4 sm:px-6">
+      <div className="w-full relative z-10 px-4 sm:px-6 lg:px-8">
         <section className="flex items-center justify-center -mt-20 sm:-mt-28">
-          <div className="relative p-2 sm:p-3 rounded-2xl sm:rounded-3xl bg-white/70 border border-stone-200/80 shadow-2xl shadow-orange-500/10 backdrop-blur-md">
-            <img
-              src={HeroImage}
-              alt="PrepInt Hero Dashboard Preview"
-              className="w-[92vw] sm:w-[82vw] max-w-5xl rounded-xl sm:rounded-2xl border border-stone-200/70 shadow-sm object-cover"
-            />
+          <div className="relative w-full max-w-5xl">
+            {/* Ambient Multi-Layer Warm Sunset Glow Behind Window */}
+            <div className="absolute -inset-1.5 bg-gradient-to-r from-amber-500/25 via-orange-500/20 to-amber-600/25 rounded-3xl sm:rounded-[36px] blur-2xl opacity-75 -z-10" />
+            <div className="absolute -top-10 left-1/2 -translate-x-1/2 w-4/5 h-24 bg-amber-400/20 blur-3xl -z-10 rounded-full" />
+
+            {/* Main Window Frame Container */}
+            <div className="relative rounded-2xl sm:rounded-3xl bg-white/85 border border-stone-200/90 shadow-[0_25px_60px_-15px_rgba(245,158,11,0.18)] backdrop-blur-xl p-2 sm:p-3 transition-transform duration-500">
+              {/* Window Chrome Header Bar */}
+              <div className="flex items-center justify-between px-3 sm:px-4 py-2 sm:py-2.5 mb-2 rounded-xl bg-stone-100/70 border border-stone-200/60 text-xs text-slate-500">
+                {/* Window Dots */}
+                <div className="flex items-center gap-1.5 sm:gap-2">
+                  <span className="w-2.5 sm:w-3 h-2.5 sm:h-3 rounded-full bg-rose-400/80 border border-rose-500/30" />
+                  <span className="w-2.5 sm:w-3 h-2.5 sm:h-3 rounded-full bg-amber-400/80 border border-amber-500/30" />
+                  <span className="w-2.5 sm:w-3 h-2.5 sm:h-3 rounded-full bg-emerald-400/80 border border-emerald-500/30" />
+                </div>
+
+                {/* Center URL / Workspace Pill */}
+                <div className="flex items-center gap-2 px-3 sm:px-4 py-1 rounded-lg bg-white/90 border border-stone-200/70 text-[11px] sm:text-xs font-mono text-slate-600 shadow-2xs">
+                  <LuLock className="text-amber-600 text-[10px] sm:text-xs" />
+                  <span className="text-slate-400 hidden xs:inline">https://</span>
+                  <span className="font-semibold text-slate-800">prepint.dev</span>
+                  <span className="text-slate-400">/workspace</span>
+                </div>
+
+                {/* Right Status Badge */}
+                <div className="flex items-center gap-1.5 text-[10px] sm:text-xs font-medium text-emerald-700 bg-emerald-50 border border-emerald-200/60 px-2.5 py-0.5 rounded-full">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                  <span className="hidden sm:inline font-semibold">Live AI Ready</span>
+                </div>
+              </div>
+
+              {/* The Hero Image Container */}
+              <div className="relative rounded-xl sm:rounded-2xl overflow-hidden border border-stone-200/80 bg-stone-900/5 shadow-inner">
+                <img
+                  src={HeroImage}
+                  alt="PrepInt Hero Dashboard Preview"
+                  className="w-full h-auto max-h-[620px] object-cover sm:object-contain bg-white transition-transform duration-700 hover:scale-[1.01]"
+                />
+
+                {/* Subtle Inner Reflection Sheen */}
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-stone-950/5 via-transparent to-white/20" />
+              </div>
+
+              {/* Floating Context Pill 1 - Bottom Left */}
+              <div className="hidden lg:flex items-center gap-3 absolute -bottom-5 -left-6 bg-white/95 backdrop-blur-md border border-stone-200/90 rounded-2xl px-4 py-3 shadow-xl shadow-stone-900/10">
+                <div className="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-600">
+                  <LuSparkles className="text-xl" />
+                </div>
+                <div>
+                  <div className="flex items-center gap-1.5">
+                    <span className="text-xs font-bold text-slate-900">AI Concept Breakdown</span>
+                    <span className="text-[10px] font-semibold text-amber-700 bg-amber-50 border border-amber-200/60 px-1.5 py-0.2 rounded">Instant</span>
+                  </div>
+                  <p className="text-[11px] text-slate-500">Syntax-highlighted code logic & tips</p>
+                </div>
+              </div>
+
+              {/* Floating Context Pill 2 - Top Right */}
+              <div className="hidden lg:flex items-center gap-3 absolute -top-5 -right-6 bg-white/95 backdrop-blur-md border border-stone-200/90 rounded-2xl px-4 py-3 shadow-xl shadow-stone-900/10">
+                <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-600">
+                  <LuShieldCheck className="text-xl" />
+                </div>
+                <div>
+                  <div className="flex items-center gap-1.5">
+                    <span className="text-xs font-bold text-slate-900">Target Role Tailored</span>
+                    <span className="text-[10px] font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200/60 px-1.5 py-0.2 rounded">Verified</span>
+                  </div>
+                  <p className="text-[11px] text-slate-500">Targeted by designation & experience</p>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
       </div>
@@ -133,7 +199,8 @@ const LandingPage = () => {
                 Features That Make You Shine
               </h2>
               <p className="text-sm text-slate-500">
-                Crafted to bridge the gap between building software and interviewing confidently.
+                Crafted to bridge the gap between building software and
+                interviewing confidently.
               </p>
             </div>
 
@@ -226,7 +293,9 @@ const LandingPage = () => {
           </div>
 
           {currentPage === "login" && <Login setCurrentPage={setCurrentPage} />}
-          {currentPage === "signup" && <SignUp setCurrentPage={setCurrentPage} />}
+          {currentPage === "signup" && (
+            <SignUp setCurrentPage={setCurrentPage} />
+          )}
         </div>
       </Modal>
     </div>
