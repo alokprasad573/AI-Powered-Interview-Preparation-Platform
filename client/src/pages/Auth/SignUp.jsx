@@ -7,6 +7,7 @@ import { validateEmail, setCookie } from "../../utils/helper";
 import axiosInstance from "../../utils/axiosInstance";
 import { API_PATHS } from "../../utils/apiPaths";
 import uploadImage from "../../utils/uploadImage"
+import SpinnerLoader from "../../components/loader/SpinnerLoader";
 
 const SignUp = ({ setCurrentPage }) => {
   const [profilePic, setProfilePic] = useState(null);
@@ -14,7 +15,7 @@ const SignUp = ({ setCurrentPage }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
-
+  const [isLoading, setIsLoading]  = useState(false);
   const { updateUser } = useContext(UserContext);
   const navigate = useNavigate();
 
@@ -39,6 +40,7 @@ const SignUp = ({ setCurrentPage }) => {
     }
 
     setError("");
+    setIsLoading(true);
 
     //SignUp API call
     try {
@@ -68,6 +70,8 @@ const SignUp = ({ setCurrentPage }) => {
       } else {
         setError("Something went wrong. Please try again.");
       }
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -110,7 +114,7 @@ const SignUp = ({ setCurrentPage }) => {
           {error && <p className="text-red-500 text-xs pb-2.5">{error}</p>}
 
           <button type="submit" className="btn-primary">
-            SIGN UP
+            {isLoading && <SpinnerLoader/>}SIGN UP
           </button>
 
           <p className="text-[13px] text-slate-800 mt-3">

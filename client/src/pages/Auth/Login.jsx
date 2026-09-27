@@ -6,11 +6,13 @@ import { validateEmail, setCookie } from "../../utils/helper";
 import axiosInstance from "../../utils/axiosInstance";
 import { API_PATHS } from "../../utils/apiPaths";
 import { UserContext } from "../../context/userContext";
+import SpinnerLoader from "../../components/loader/SpinnerLoader";
 
 const Login = ({ setCurrentPage }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const { updateUser } = useContext(UserContext);
 
@@ -31,7 +33,7 @@ const Login = ({ setCurrentPage }) => {
     }
 
     setError("");
-
+    setIsLoading(true);
     //Login API call
     try {
       const response = await axiosInstance.post(API_PATHS.AUTH.LOGIN, {
@@ -51,6 +53,8 @@ const Login = ({ setCurrentPage }) => {
       } else {
         setError("Something went wrong. Please try again.");
       }
+    } finally {
+      setIsLoading(false)
     }
   };
 
@@ -81,7 +85,7 @@ const Login = ({ setCurrentPage }) => {
 
           {error && <p className="text-red-500 text-xs pb-2.5">{error}</p>}
           <button type="submit" className="btn-primary">
-            LOGIN
+            {isLoading && <SpinnerLoader />}LOGIN
           </button>
 
           <p className="text-[13px] text-slate-800 mt-3">
